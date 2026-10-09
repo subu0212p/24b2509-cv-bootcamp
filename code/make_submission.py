@@ -249,7 +249,8 @@ def main():
                   "val_acc_noisy_labels_at_early_stop": round(float(vn[es - 1]), 2)},
         "task3": {"method": "Rank-average of two signals: (a) 4-fold cross-validated out-of-fold confidence, "
                             "1 - p(noisy label), averaged over each fold model's 5 best noisy-val epochs with flip TTA; "
-                            "(b) 1 - p(noisy label) from the final DivideMix two-network ensemble (Task 4)."},
+                            "(b) 1 - p(noisy label) from the final DivideMix two-network ensemble (Task 4 run). 5 training runs in total; "
+                            "formula fixed in advance, clean labels used only to measure AUROC afterwards."},
         "task4": {"methods": [{"name": r["name"], "file": r["file"], "val_acc_noisy_labels": round(r["val_acc_noisy_labels"], 2)}
                               for r in t4],
                   "best_method": best["name"]},
