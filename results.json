@@ -1,0 +1,50 @@
+{
+  "name": "Subodh Shailendra Patel",
+  "roll_no": "24B2509",
+  "seed": 42,
+  "training_setup": {
+    "optimizer": "SGD (momentum 0.9, Nesterov, weight decay 5e-4), initial LR 0.1",
+    "learning_rate_schedule": "cosine annealing from 0.1 to 0 over the run, updated every iteration",
+    "batch_size": 128,
+    "epochs": 60,
+    "augmentation": "random crop 32x32 with 4-pixel zero padding + random horizontal flip",
+    "gpu_used": "2x NVIDIA Tesla T4 (Kaggle); one network per GPU"
+  },
+  "task1": {
+    "noise_rate": 40.24,
+    "val_acc_noisy_labels__clean_ref_model": 59.36,
+    "val_acc_noisy_labels__noisy_ce_model": 51.68
+  },
+  "task2": {
+    "memorization_start_epoch": 34,
+    "early_stop_epoch": 44,
+    "val_acc_noisy_labels_at_early_stop": 55.84
+  },
+  "task3": {
+    "method": "Rank-average of two signals: (a) 4-fold cross-validated out-of-fold confidence, 1 - p(noisy label), averaged over each fold model's 5 best noisy-val epochs with flip TTA; (b) 1 - p(noisy label) from the final DivideMix two-network ensemble (Task 4)."
+  },
+  "task4": {
+    "methods": [
+      {
+        "name": "gce",
+        "file": "t4_gce.csv",
+        "val_acc_noisy_labels": 56.96
+      },
+      {
+        "name": "filter",
+        "file": "t4_filter.csv",
+        "val_acc_noisy_labels": 57.48
+      },
+      {
+        "name": "dividemix",
+        "file": "t4_dividemix.csv",
+        "val_acc_noisy_labels": 57.22
+      }
+    ],
+    "best_method": "filter"
+  },
+  "task5": {
+    "val_acc_synthetic_labels__baseline": 45.16,
+    "val_acc_synthetic_labels__best_method": 51.46
+  }
+}
